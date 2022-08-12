@@ -1,10 +1,8 @@
 <p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
+    <img alt="Karameru" src="https://karameruland.com/wp/wp-content/uploads/2021/07/3403f15345623c2fbbc19054479100a5.png" width="60" />
 </p>
 <h1 align="center">
-  Gatsby minimal TypeScript starter
+  Karameru and ME
 </h1>
 
 ## 🚀 Quick start
