@@ -1,5 +1,9 @@
 const Color = {
   background: '#16213E',
+
+  text: {
+    light: '#FFFFFF',
+  },
 };
 
 const theme = Object.freeze({
