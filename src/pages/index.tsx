@@ -1,8 +1,11 @@
 import type { HeadFC } from 'gatsby';
 import * as React from 'react';
-import styled, { css, keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 import uparupaGIF from 'assets/images/karameru.gif';
+import LayerCircleArt from 'components/Art/LayerCircleArt';
+import { FillButton } from 'components/Button/styled';
+import { GITHUB_URL, TISTORY_URL } from 'configs/constants';
 
 const Wrapper = styled.div`
   display: flex;
@@ -24,65 +27,6 @@ const RootCircleContainer = styled.div`
   transform: translateX(-50%);
 `;
 
-const CircleContainer = styled.div`
-  width: 25rem;
-  height: 25rem;
-  position: relative;
-`;
-
-const CircleAnimation = keyframes`
-  0% {
-    border-top-left-radius: 40%;
-    border-top-right-radius: 70%;
-    border-bottom-left-radius: 30%;
-    border-bottom-right-radius: 40%;
-  }
-
-  65% {
-    border-top-left-radius: 60%;
-    border-top-right-radius: 30%;
-    border-bottom-top-radius: 50%;
-    border-bottom-bottom-radius: 10%;
-  }
-
-
-  100% {
-    border-bottom-left-radius: 40%;
-    border-bottom-right-radius: 70%;
-    border-top-left-radius: 30%;
-    border-top-right-radius: 40%;
-  }
-`;
-
-const Circle = css`
-  width: 20rem;
-  height: 20rem;
-  position: absolute;
-  opacity: 0.6;
-  left: 0;
-  top: 0;
-  animation: ${CircleAnimation} 10s alternate infinite;
-`;
-
-const Layer1 = styled.div`
-  ${Circle};
-  transform: rotate(90deg) scale(1.1) translateY(2rem);
-  background-color: #ffd6da;
-  animation-duration: 6s;
-`;
-const Layer2 = styled.div`
-  ${Circle};
-  background-color: #fabec4;
-  transform: rotate(60deg) translateY(6rem);
-  animation-duration: 8s;
-`;
-const Layer3 = styled.div`
-  ${Circle};
-  background-color: #f8a1aa;
-  transform: rotate(200deg) scale(0.9) translateY(-10rem);
-  opacity: 0.7;
-`;
-
 const Profile = styled.div`
   position: relative;
   z-index: 2;
@@ -100,7 +44,7 @@ const SubTitle = styled.div`
 `;
 
 const Highlight = styled.span`
-  color: #d74e5c;
+  color: ${(props) => props.theme.color.primary};
   font-weight: bold;
 `;
 
@@ -128,15 +72,14 @@ const InfoList = styled.ul`
 
 const Info = styled.li`
   font-size: 1.25rem;
-  margin-bottom: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
   position: relative;
 
   ::before {
-    content: '>';
     display: inline-block;
     font-weight: bold;
     padding-right: 1rem;
-    font-size: 2rem;
   }
 `;
 
@@ -144,38 +87,19 @@ const Link = styled.a`
   display: block;
 `;
 
-const Button = styled.button`
-  color: #00000099;
-  font-weight: bold;
-  padding: 1rem 1rem;
-  border-radius: 3rem;
-  transition: 0.2s;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-
-  &:hover {
-    opacity: 0.8;
-  }
-
-  &:active {
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 0px 0px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  }
-`;
-
-const YoutubeButton = styled(Button)`
+const YoutubeButton = styled(FillButton)`
   margin: 1rem;
   margin-right: 0rem;
   background-color: #fbcf1f;
 `;
 
-const GithubButton = styled(Button)`
+const GithubButton = styled(FillButton).attrs({ buttonColor: 'light' })`
   background-color: #161b22;
-  color: white;
   margin-top: 1rem;
 `;
 
-const TistoryButton = styled(Button)`
+const TistoryButton = styled(FillButton).attrs({ buttonColor: 'light' })`
   background-color: #ff5544;
-  color: white;
   margin-top: 1rem;
 `;
 
@@ -186,8 +110,6 @@ const Uparupa = styled.img`
 `;
 
 const KARAMERU_URL = 'https://www.youtube.com/channel/UCpGk56cJDZcVqIxZatX7nbQ';
-const GITHUB_URL = 'https://github.com/upa-r-upa';
-const TISTORY_URL = 'https://kimdabin.tistory.com';
 
 const IndexPage = () => {
   return (
@@ -195,11 +117,7 @@ const IndexPage = () => {
       <MainWrapper>
         <TitleContainer>
           <RootCircleContainer>
-            <CircleContainer>
-              <Layer1 />
-              <Layer2 />
-              <Layer3 />
-            </CircleContainer>
+            <LayerCircleArt />
           </RootCircleContainer>
 
           <Profile>
