@@ -17,5 +17,5 @@
     "noEmit": true /* Specify a set of bundled library declaration files that describe the target runtime environment. */,
     "jsx": "react"
   },
-  "include": ["./src/**/*", "./gatsby-node.ts", "./gatsby-config.ts", "./plugins/**/*"]
+  "include": ["./src/**/*", "./gatsby-node.ts", "./gatsby-config.ts", "./plugins/**/*", "./src/declaration.d.ts"]
 }
