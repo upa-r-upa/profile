@@ -1,4 +1,3 @@
-import { GithubFilled } from '@ant-design/icons';
 import { HeadFC } from 'gatsby';
 import * as React from 'react';
 import styled, { keyframes } from 'styled-components';
@@ -312,10 +311,7 @@ const IndexPage = () => {
 
             <ButtonsWrapper>
               <Link href={'https://github.com/upa-r-upa'}>
-                <GithubButton>
-                  <GithubFilled />
-                  Github
-                </GithubButton>
+                <GithubButton>Github</GithubButton>
               </Link>
 
               <Link href={'https://kimdabin.tistory.com'}>
