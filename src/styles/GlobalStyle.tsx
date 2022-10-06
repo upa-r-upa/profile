@@ -121,11 +121,12 @@ export const GlobalStyle = createGlobalStyle`
   body {
         font-size: 14px;
         font-size: 1.4rem;
-        font-family: 'SDGothic', sans-serif;
+        font-family: 'NotoSans', sans-serif;
         line-height: 1.5;
-        font-weight: normal;
+        font-weight: 300;
         width: 100%;
         height: 100vh;
+        background-color: ${(props) => props.theme.color.background};
     }
 
     html, body, #root {

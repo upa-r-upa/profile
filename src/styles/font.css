@@ -1,13 +1,29 @@
 @font-face {
-  font-family: 'SDGothic';
-  src: url('assets/fonts/SDGothicNeobTTF-bLt.woff2') format('woff2'),
-    url('assets/fonts/SDGothicNeobTTF-bLt.woff') format('woff');
-  font-weight: normal;
+  font-family: 'NotoSans';
+  src: url('assets/fonts/notosans/NotoSansKR-Thin.otf') format('opentype');
+  font-weight: 100;
 }
 
 @font-face {
-  font-family: 'SDGothic';
-  src: url('assets/fonts/SDGothicNeobTTF-dMd.woff2') format('woff2'),
-    url('assets/fonts/SDGothicNeobTTF-dMd.woff') format('woff');
-  font-weight: bold;
+  font-family: 'NotoSans';
+  src: url('assets/fonts/notosans/NotoSansKR-Regular.otf') format('opentype');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'NotoSans';
+  src: url('assets/fonts/notosans/NotoSansKR-Bold.otf') format('truetype');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Silkscreen';
+  src: url('assets/fonts/silkscreen/Silkscreen-Regular.ttf') format('truetype');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Silkscreen';
+  src: url('assets/fonts/silkscreen/Silkscreen-Bold.ttf') format('truetype');
+  font-weight: 700;
 }
