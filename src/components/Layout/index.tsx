@@ -2,7 +2,7 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 
 import { GlobalStyle } from 'styles/GlobalStyle';
-import theme from 'styles/theme';
+import getTheme from 'styles/theme';
 
 import 'styles/font.css';
 
@@ -12,7 +12,8 @@ interface Props {
 
 const Layout = ({ children }: Props) => {
   return (
-    <ThemeProvider theme={theme}>
+    // FIX: Should be able to re-deliver the theme whenever resizing occurs.
+    <ThemeProvider theme={getTheme(window.innerWidth)}>
       <GlobalStyle />
       {children}
     </ThemeProvider>
