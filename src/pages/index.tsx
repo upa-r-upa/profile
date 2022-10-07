@@ -1,179 +1,391 @@
-import type { HeadFC } from 'gatsby';
+import { HeadFC } from 'gatsby';
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
-import uparupaGIF from 'assets/images/karameru.gif';
-import LayerCircleArt from 'components/Art/LayerCircleArt';
+import ResumeList, { Resume, ResumeProject } from 'assets/data/resume';
 import { FillButton } from 'components/Button/styled';
-import { GITHUB_URL, TISTORY_URL } from 'configs/constants';
+import { getPeriodFormatDate } from 'utils/date';
 
 const Wrapper = styled.div`
+  color: ${(props) => props.theme.color.text.light};
+  min-width: 70rem;
+`;
+
+const MainSection = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  flex-direction: column;
+  height: 30rem;
 `;
 
-const TitleContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const MainWrapper = styled.div``;
-
-const RootCircleContainer = styled.div`
-  position: absolute;
-  transform: translateX(-50%);
-`;
-
-const Profile = styled.div`
-  position: relative;
-  z-index: 2;
-`;
-
-const Title = styled.div`
-  font-weight: bold;
-  font-size: 2.5rem;
-  text-align: left;
-`;
-
-const SubTitle = styled.div`
-  font-weight: bold;
-  font-size: 1.8rem;
+const ContentSection = styled.div`
+  max-width: 95rem;
+  margin: 1rem auto;
 `;
 
 const Highlight = styled.span`
   color: ${(props) => props.theme.color.primary};
-  font-weight: bold;
+  font-weight: 500;
 `;
 
-const Description = styled.div`
-  font-size: 1.4rem;
+const Bold = styled.span`
+  font-weight: 500;
 `;
 
-const InfoContainer = styled.div`
-  margin-top: 3rem;
-  position: relative;
-  z-index: 2;
-`;
-
-const RefContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
-`;
-
-const InfoList = styled.ul`
-  margin-top: 1.5rem;
-  padding-left: 3rem;
-  text-align: right;
-`;
-
-const Info = styled.li`
-  font-size: 1.25rem;
-  line-height: 1.5;
+const ContentTitle = styled(Bold)`
+  display: block;
   margin-bottom: 1.5rem;
-  position: relative;
+  font-family: ${(props) => props.theme.fontFamily.special};
+`;
 
-  ::before {
-    display: inline-block;
-    font-weight: bold;
-    padding-right: 1rem;
+const CursorAnimation = keyframes`
+  0%, 45%, 90%, 100% {
+    opacity: 1;
   }
+
+  50%, 85% {
+    opacity: 0;
+  }
+`;
+
+const ButtonsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+`;
+
+const Button = styled(FillButton)`
+  svg {
+    display: inline-block;
+    margin-right: 1rem;
+    font-size: ${(props) => props.theme.fontSize.sub};
+  }
+
+  background-color: #fff;
+  font-family: ${(props) => props.theme.fontFamily.special};
+`;
+
+const GithubButton = styled(Button).attrs({ buttonColor: 'light' })`
+  background-color: #323437;
+  margin-right: 1rem;
 `;
 
 const Link = styled.a`
   display: block;
 `;
 
-const YoutubeButton = styled(FillButton)`
-  margin: 1rem;
-  margin-right: 0rem;
-  background-color: #fbcf1f;
+const SubTitle = styled.div`
+  font-size: ${(props) => props.theme.fontSize.h3};
+  text-align: left;
+  font-family: ${(props) => props.theme.fontFamily.special};
 `;
 
-const GithubButton = styled(FillButton).attrs({ buttonColor: 'light' })`
-  background-color: #161b22;
-  margin-top: 1rem;
+const Section = styled.div`
+  color: ${(props) => props.theme.color.text.light};
+  width: 100%;
+  margin-bottom: 2rem;
+  padding-left: 2rem;
 `;
 
-const TistoryButton = styled(FillButton).attrs({ buttonColor: 'light' })`
-  background-color: #ff5544;
-  margin-top: 1rem;
+const Title = styled.div`
+  color: ${(props) => props.theme.color.primary};
+  margin-left: 2rem;
+  font-size: ${(props) => props.theme.fontSize.h1};
+  font-family: ${(props) => props.theme.fontFamily.special};
+  border-bottom: 0.3rem dotted ${(props) => props.theme.color.primary};
+
+  &:before {
+    content: '>';
+    padding-right: 1rem;
+  }
 `;
 
-const Uparupa = styled.img`
-  width: 5rem;
-  position: absolute;
-  top: 2.5rem;
+const Content = styled.div`
+  padding: 2rem;
+  font-size: ${(props) => props.theme.fontSize.content};
+  letter-spacing: 0.1rem;
 `;
 
-const KARAMERU_URL = 'https://www.youtube.com/channel/UCpGk56cJDZcVqIxZatX7nbQ';
+const ContentList = styled.ul``;
+
+const Item = styled.li`
+  margin-bottom: 2rem;
+  line-height: 2.2;
+`;
+
+const Team = styled.div`
+  margin-top: 5rem;
+`;
+
+const TeamTitle = styled(ContentTitle)`
+  font-size: ${(props) => props.theme.fontSize.h3};
+
+  ${Highlight} {
+    color: ${(props) => props.theme.color.secondary};
+    font-size: ${(props) => props.theme.fontSize.h2};
+  }
+
+  &:first-child {
+    margin-top: 0rem;
+  }
+`;
+
+const ProjectSpec = styled.p`
+  margin-bottom: 0.5rem;
+  font-family: ${(props) => props.theme.fontFamily.special};
+`;
+
+const ResumeItem = styled.li`
+  margin-bottom: 0.2rem;
+  font-size: ${(props) => props.theme.fontSize.sub};
+  letter-spacing: 0.15rem;
+
+  &:before {
+    content: '>_';
+    padding-right: 1.5rem;
+    font-size: ${(props) => props.theme.fontSize.h4};
+    font-family: ${(props) => props.theme.fontFamily.special};
+    letter-spacing: -0.8rem;
+  }
+`;
+
+const ResumeWrapper = styled.ul`
+  width: max-content;
+  padding-left: 0;
+`;
+
+const Project = styled.div`
+  margin-bottom: 5rem;
+
+  &:nth-child(odd) {
+    ${ProjectSpec}, ${ResumeItem}::before {
+      color: ${(props) => props.theme.color.secondary};
+    }
+  }
+
+  &:nth-child(even) {
+    ${ProjectSpec}, ${ResumeItem}::before {
+      color: ${(props) => props.theme.color.primary};
+    }
+  }
+
+  &:last-child {
+    margin-bottom: 0rem;
+  }
+`;
+
+const ProjectTitle = styled.p`
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  font-size: ${(props) => props.theme.fontSize.title};
+`;
+
+const Darken = styled.span`
+  color: ${(props) => props.theme.color.text.dark};
+`;
+
+const ProjectDescription = styled.p`
+  margin-bottom: 1rem;
+  color: ${(props) => props.theme.color.text.dark};
+  letter-spacing: 0.2rem;
+  letter-spacing: 0.1rem;
+`;
+
+const Information = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: ${(props) => props.theme.fontSize.content};
+  font-family: ${(props) => props.theme.fontFamily.special};
+
+  ${Link} {
+    border-bottom: 0.1rem solid transparent;
+
+    &:hover {
+      border-bottom: 0.1rem solid ${(props) => props.theme.color.primary};
+    }
+  }
+`;
+
+const InfoLabel = styled.p`
+  margin-right: 1rem;
+
+  &:after {
+    content: ':';
+  }
+`;
+
+const MainTitle = styled.div`
+  text-align: left;
+  font-family: ${(props) => props.theme.fontFamily.special};
+  font-weight: 500;
+  margin: 2rem 0;
+  line-height: 1;
+  color: ${(props) => props.theme.color.text.light};
+  font-size: 7rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:before {
+    content: '>';
+    position: absolute;
+    left: -5rem;
+    top: 0;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    right: -3rem;
+    width: 1.5rem;
+    height: 100%;
+    top: 0rem;
+    background-color: #ffffff60;
+
+    animation: ${CursorAnimation} 1s infinite;
+  }
+`;
+
+const FlickerAnimation = keyframes`
+  0% {
+    width: 0px;
+  }
+
+  100% {
+    width: max-content;
+  }
+`;
+
+const TextPart = styled.span<{ delaySecond: number }>`
+  display: inline-block;
+  overflow: hidden;
+  width: 0px;
+  animation: ${FlickerAnimation} 0.1s forwards;
+  animation-delay: ${(props) => props.delaySecond}s;
+
+  &:nth-child(n + 8) {
+    color: ${(props) => props.theme.color.secondary};
+  }
+`;
+
+const typingAnimationText = 'HELLO, World!';
+const partAnimation = 0.3;
+
+const typingAnimationTextArray = Array.from(typingAnimationText);
 
 const IndexPage = () => {
+  const renderMainAnimation = (): React.ReactNode => {
+    return typingAnimationTextArray.map((part, i) => (
+      <TextPart key={i} delaySecond={partAnimation * i}>
+        {part}
+      </TextPart>
+    ));
+  };
+
+  const getFormattedLibraries = (libraries: Array<string>): string => {
+    return libraries.join(', ');
+  };
+
+  const renderProjects = (projects: Array<ResumeProject>): React.ReactNode => {
+    return projects.map(({ title, period, description, libraries, tasks }) => (
+      <Project key={title}>
+        <ProjectTitle>
+          {title} <Darken>{`[${getPeriodFormatDate(...period)}]`}</Darken>
+        </ProjectTitle>
+        <ProjectSpec>{getFormattedLibraries(libraries)}</ProjectSpec>
+        <ProjectDescription>{description}</ProjectDescription>
+
+        <ResumeWrapper>
+          {tasks.map((task) => (
+            <ResumeItem key={task}>{task}</ResumeItem>
+          ))}
+        </ResumeWrapper>
+      </Project>
+    ));
+  };
+
+  const renderResumeList = (resumeList: Array<Resume>): React.ReactNode => {
+    return resumeList.map((team) => (
+      <Team key={team.team}>
+        <TeamTitle>
+          <Highlight>@{team.team}</Highlight> ({`${getPeriodFormatDate(...team.period)}`})
+        </TeamTitle>
+
+        {renderProjects(team.projects)}
+      </Team>
+    ));
+  };
+
   return (
     <Wrapper>
-      <MainWrapper>
-        <TitleContainer>
-          <RootCircleContainer>
-            <LayerCircleArt />
-          </RootCircleContainer>
+      <MainSection>
+        <MainTitle>{renderMainAnimation()}</MainTitle>
 
-          <Profile>
-            <SubTitle>
-              안녕하세요.
-              <br />
-            </SubTitle>
-            <Description>우파루파 캐릭터와 슈타인즈 게이트, 에도가와 코난을 좋아하는</Description>
-            <Title>
-              개발자 <Highlight>김다빈</Highlight>입니다!
-            </Title>
-          </Profile>
-        </TitleContainer>
+        <SubTitle>
+          I am developer <Highlight>Dabin Kim.</Highlight>
+        </SubTitle>
+      </MainSection>
 
-        <InfoContainer>
-          <InfoList>
-            <Info>
-              요즘 가장 관심있는 건 <Highlight>오픈소스</Highlight> 활동이에요.
-              <br /> 문서 번역부터 천천히 친해지는 중입니다.
-            </Info>
+      <ContentSection>
+        <Section>
+          <Title>ME?</Title>
+          <Content>
+            <ContentTitle>
+              I&#39; m Kim Da-bin, a front-end developer with<Highlight> four years</Highlight> of experience.
+            </ContentTitle>
 
-            <Info>
-              프론트가 주력이지만, 다른 개발 영역에서도 활동하고 있어요. <br />
-              현재 속해있는 <Highlight>Blond Beard</Highlight>팀은 유니티 게임 팀이에요!
-            </Info>
+            <ContentList>
+              <Item>
+                주로 React와 Typescript를 사용하고, styled-components를 사랑합니다.
+                <br /> 새로운 것을 무작정 도입해보고, 공부해보는 과정에서 <Highlight>즐거움</Highlight>을 느낍니다.
+                그리고, 개발 영역에 <Highlight>제한</Highlight>을 두지 않습니다. 재미있어 보인다면 일단 해보고 봅니다!
+                <br />
+              </Item>
 
-            <Info>
-              <Uparupa src={uparupaGIF} alt="uparupa" />
-              우파루파는 너무 귀여워서 좋아하는 캐릭터에요.
-              <br /> 집에 피규어와 인형도 있어요.
-              <Link href={KARAMERU_URL}>
-                <YoutubeButton>Karameru 작가님 유튜브</YoutubeButton>
+              <Item>
+                귀여운 우파루파를 사랑하고, 아이작과 슬라임 랜처 게임, 슈타인즈 게이트를 좋아합니다. <br />
+                최근엔 오픈소스에 흥미가 생겨서, 조금씩 컨트리뷰션을 진행하고 있습니다.
+              </Item>
+            </ContentList>
+
+            <ButtonsWrapper>
+              <Link href={'https://github.com/upa-r-upa'}>
+                <GithubButton>Github</GithubButton>
               </Link>
-            </Info>
 
-            <Info>
-              최근엔 스탠리 패러블 디럭스의 거의 모든 엔딩을 봤어요. <br />
-              그리고 아이작 리팬던스 어려움 모드로 드디어 엔딩을 봤어요!
-            </Info>
+              <Link href={'https://kimdabin.tistory.com'}>
+                <Button>Tistory blog</Button>
+              </Link>
+            </ButtonsWrapper>
+          </Content>
+        </Section>
 
-            <Info>
-              해당 사이트는 아직 PC/Tablet만 지원하고 있어요.
-              <br /> 더 많은 정보와 개발 이야기들도 보러 오세요!
-              <RefContainer>
-                <Link href={GITHUB_URL}>
-                  <GithubButton>Github 방문하기</GithubButton>
-                </Link>
+        <Section>
+          <Title>Resume!</Title>
+          <Content>{renderResumeList(ResumeList)}</Content>
+        </Section>
 
-                <Link href={TISTORY_URL}>
-                  <TistoryButton>Tistory 방문하기</TistoryButton>
-                </Link>
-              </RefContainer>
-            </Info>
-          </InfoList>
-        </InfoContainer>
-      </MainWrapper>
+        <Section>
+          <Title>More?</Title>
+
+          <Content>
+            <Information>
+              <InfoLabel>Email</InfoLabel>
+              <Highlight>
+                <Link href="mailto:me@upa-r-upa.com">me@upa-r-upa.com</Link>
+              </Highlight>
+            </Information>
+
+            <Information>
+              <InfoLabel>Info</InfoLabel>
+              This page is currently under development. Thank you.
+            </Information>
+          </Content>
+        </Section>
+      </ContentSection>
     </Wrapper>
   );
 };
