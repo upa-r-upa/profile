@@ -22,10 +22,10 @@ const ButtonBase = styled.button<ButtonProps>`
   ${({ buttonColor }) =>
     buttonColor === 'light'
       ? css`
-          color: white;
+          color: ${(props) => props.theme.color.text.light};
         `
       : css`
-          color: ${(props) => props.theme.color.text.dark};
+          color: ${(props) => props.theme.color.text.deepDark};
         `};
 `;
 

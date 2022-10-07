@@ -120,8 +120,8 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
         font-size: 14px;
-        font-size: 1.4rem;
-        font-family: 'NotoSans', sans-serif;
+        font-size: ${(props) => props.theme.fontSize.content};
+        font-family: ${(props) => props.theme.fontFamily.normal}, sans-serif;
         line-height: 1.5;
         font-weight: 300;
         width: 100%;
