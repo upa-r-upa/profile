@@ -16,6 +16,10 @@ URL: https://upa-r-upa.com
 
 현재 점진적으로 기능을 개발해가고 있습니다.
 
+# Commit/Branch
+Commit은 gitmoji 규약(https://gitmoji.dev) 과 semantic commit 규약을 함께 사용하고 있습니다.
+
+Branch는 semantic branch naming을 사용하고 있습니다.
 
 
 # Spec
