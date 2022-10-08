@@ -1,12 +1,9 @@
-<p align="center">
-    <img alt="Karameru" src="https://karameruland.com/wp/wp-content/uploads/2021/07/3403f15345623c2fbbc19054479100a5.png" width="60" />
-</p>
-<h1 align="center">
-  Develop with Uparupa
-</h1>
 
+# Develop with Uparupa
+  
+![hello-world-type](https://user-images.githubusercontent.com/56328777/194716252-9cf14fb4-4c51-4051-9083-33ae428dbc0a.gif)
 
-# Project
+## Project
 
 URL: https://upa-r-upa.com
 
@@ -16,13 +13,13 @@ URL: https://upa-r-upa.com
 
 현재 점진적으로 기능을 개발해가고 있습니다.
 
-# Commit/Branch
+## Commit/Branch
 Commit은 gitmoji 규약(https://gitmoji.dev) 과 semantic commit(https://www.conventionalcommits.org/en/v1.0.0/) 규약을 함께 사용하고 있습니다.
 
 Branch는 semantic branch naming을 사용하고 있습니다.
 
 
-# Spec
+## Spec
 - `React`
 - `Gatsby`
 - `styled-components`
