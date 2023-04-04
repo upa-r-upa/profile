@@ -14,6 +14,11 @@ export interface Resume {
 
 const ResumeList: Array<Resume> = [
   {
+    team: 'Spoqa',
+    period: [new Date(2022, 10), new Date(2023, 1)],
+    projects: [],
+  },
+  {
     team: 'Famoz',
     period: [new Date(2019, 1), new Date(2022, 5)],
     projects: [

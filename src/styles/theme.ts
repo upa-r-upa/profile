@@ -25,12 +25,12 @@ const fontFamily = {
  * @returns A string that is a media query.
  */
 const getMediaQuery = (minWidth: number, maxWidth?: number): string => {
-  return `@media (min-width: ${minWidth}px)${maxWidth ? ` and (max-width: ${maxWidth}px)` : ''}`;
+  return `@media (min-width: ${minWidth}rem)${maxWidth ? ` and (max-width: ${maxWidth}rem)` : ''}`;
 };
 
 /* Defining the breakpoints(rem) for the media queries. */
 const breakPoint = {
-  mobile: 47.9, // max
+  mobile: 51, // max
   tablet: 76.7, // max
 
   'min-width': 32,
@@ -60,10 +60,10 @@ interface FontSize {
 /* Defining the font size for Mobile.(rem) */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const mobileFontSize: FontSize = {
-  h1: '3.8rem',
-  h2: '2.8rem',
-  h3: '2.3rem',
-  h4: '1.8rem',
+  h1: '2rem',
+  h2: '1.6rem',
+  h3: '1.3rem',
+  h4: '1rem',
 
   title: '1.7rem',
   content: '1.4rem',
@@ -88,19 +88,13 @@ const PCFontSize: FontSize = {
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const getFontSizeSet = (clientWidth: number): FontSize => {
-  /*
-    // TODO: Needs to be modified to return the font size that fits when working with Responsive.
+  const remWidth = clientWidth / 10;
 
-    const remWidth = clientWidth / 10;
-
-    if (remWidth > breakPoint.mobile) {
-      return PCFontSize;
-    } else {
-      return mobileFontSize;
-    }
-  */
-
-  return PCFontSize;
+  if (remWidth > breakPoint.mobile) {
+    return PCFontSize;
+  } else {
+    return mobileFontSize;
+  }
 };
 
 export interface Theme {

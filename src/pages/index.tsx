@@ -8,7 +8,8 @@ import { getPeriodFormatDate } from 'utils/date';
 
 const Wrapper = styled.div`
   color: ${(props) => props.theme.color.text.light};
-  min-width: 70rem;
+  width: 100%;
+  padding: 0 2rem;
 `;
 
 const MainSection = styled.div`
@@ -16,7 +17,14 @@ const MainSection = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 30rem;
+
+  ${({ theme }) => theme.mediaQuery.tabletAndPC} {
+    height: 30rem;
+  }
+
+  ${({ theme }) => theme.mediaQuery.mobile} {
+    height: 50vh;
+  }
 `;
 
 const ContentSection = styled.div`
@@ -76,7 +84,7 @@ const Link = styled.a`
 `;
 
 const SubTitle = styled.div`
-  font-size: ${(props) => props.theme.fontSize.h3};
+  font-size: ${(props) => props.theme.fontSize.h2};
   text-align: left;
   font-family: ${(props) => props.theme.fontFamily.special};
 `;
@@ -86,6 +94,12 @@ const Section = styled.div`
   width: 100%;
   margin-bottom: 2rem;
   padding-left: 2rem;
+
+  ${({ theme }) => theme.mediaQuery.mobile} {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 0;
+  }
 `;
 
 const Title = styled.div`
@@ -99,31 +113,49 @@ const Title = styled.div`
     content: '>';
     padding-right: 1rem;
   }
+
+  ${({ theme }) => theme.mediaQuery.mobile} {
+    margin-left: 0;
+  }
 `;
 
 const Content = styled.div`
   padding: 2rem;
   font-size: ${(props) => props.theme.fontSize.content};
   letter-spacing: 0.1rem;
+
+  ${({ theme }) => theme.mediaQuery.mobile} {
+    padding: 2rem 0;
+  }
 `;
 
 const ContentList = styled.ul``;
 
 const Item = styled.li`
   margin-bottom: 2rem;
-  line-height: 2.2;
+
+  ${({ theme }) => theme.mediaQuery.tabletAndPC} {
+    line-height: 2.2;
+  }
+
+  ${({ theme }) => theme.mediaQuery.mobile} {
+    line-height: 1.7;
+  }
 `;
 
 const Team = styled.div`
   margin-top: 5rem;
+
+  ${({ theme }) => theme.mediaQuery.mobile} {
+    margin-top: 1rem;
+  }
 `;
 
 const TeamTitle = styled(ContentTitle)`
-  font-size: ${(props) => props.theme.fontSize.h3};
+  font-size: ${(props) => props.theme.fontSize.h2};
 
   ${Highlight} {
     color: ${(props) => props.theme.color.secondary};
-    font-size: ${(props) => props.theme.fontSize.h2};
   }
 
   &:first-child {
@@ -134,6 +166,7 @@ const TeamTitle = styled(ContentTitle)`
 const ProjectSpec = styled.p`
   margin-bottom: 0.5rem;
   font-family: ${(props) => props.theme.fontFamily.special};
+  font-size: ${(props) => props.theme.fontSize.sub};
 `;
 
 const ResumeItem = styled.li`
@@ -150,10 +183,7 @@ const ResumeItem = styled.li`
   }
 `;
 
-const ResumeWrapper = styled.ul`
-  width: max-content;
-  padding-left: 0;
-`;
+const ResumeWrapper = styled.ul``;
 
 const Project = styled.div`
   margin-bottom: 5rem;
@@ -178,7 +208,6 @@ const Project = styled.div`
 const ProjectTitle = styled.p`
   font-weight: 500;
   margin-bottom: 0.5rem;
-  font-size: ${(props) => props.theme.fontSize.title};
 `;
 
 const Darken = styled.span`
@@ -216,13 +245,11 @@ const InfoLabel = styled.p`
 `;
 
 const MainTitle = styled.div`
-  text-align: left;
   font-family: ${(props) => props.theme.fontFamily.special};
   font-weight: 500;
   margin: 2rem 0;
   line-height: 1;
   color: ${(props) => props.theme.color.text.light};
-  font-size: 7rem;
   position: relative;
   display: flex;
   align-items: center;
@@ -230,9 +257,7 @@ const MainTitle = styled.div`
 
   &:before {
     content: '>';
-    position: absolute;
-    left: -5rem;
-    top: 0;
+    margin-right: 1rem;
   }
 
   &::after {
@@ -246,6 +271,28 @@ const MainTitle = styled.div`
     background-color: #ffffff60;
 
     animation: ${CursorAnimation} 1s infinite;
+
+    ${({ theme }) => theme.mediaQuery.mobile} {
+      right: -2rem;
+      width: 1rem;
+    }
+  }
+
+  ${({ theme }) => theme.mediaQuery.PC} {
+    font-size: 7rem;
+  }
+
+  ${({ theme }) => theme.mediaQuery.tablet} {
+    font-size: 6rem;
+  }
+
+  ${({ theme }) => theme.mediaQuery.mobile} {
+    font-size: 5rem;
+  }
+
+  @media (max-width: 53.5rem) {
+    font-size: 2.7rem;
+    flex-wrap: wrap;
   }
 `;
 
@@ -346,7 +393,8 @@ const IndexPage = () => {
               </Item>
 
               <Item>
-                귀여운 우파루파를 사랑하고, 아이작과 슬라임 랜처 게임, 슈타인즈 게이트를 좋아합니다. <br />
+                이세계 아이돌의 고세구와 아이네를 사랑하고, 귀여운 우파루파를 좋아합니다. 아이작과 슬라임 랜처 게임,
+                슈타인즈 게이트를 좋아합니다. <br />
                 최근엔 오픈소스에 흥미가 생겨서, 조금씩 컨트리뷰션을 진행하고 있습니다.
               </Item>
             </ContentList>
@@ -377,11 +425,6 @@ const IndexPage = () => {
               <Highlight>
                 <Link href="mailto:me@upa-r-upa.com">me@upa-r-upa.com</Link>
               </Highlight>
-            </Information>
-
-            <Information>
-              <InfoLabel>Info</InfoLabel>
-              This page is currently under development. Thank you.
             </Information>
           </Content>
         </Section>
