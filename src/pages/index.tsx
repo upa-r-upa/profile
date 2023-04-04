@@ -393,7 +393,8 @@ const IndexPage = () => {
               </Item>
 
               <Item>
-                귀여운 우파루파를 사랑하고, 아이작과 슬라임 랜처 게임, 슈타인즈 게이트를 좋아합니다. <br />
+                이세계 아이돌의 고세구와 아이네를 사랑하고, 귀여운 우파루파를 좋아합니다. 아이작과 슬라임 랜처 게임,
+                슈타인즈 게이트를 좋아합니다. <br />
                 최근엔 오픈소스에 흥미가 생겨서, 조금씩 컨트리뷰션을 진행하고 있습니다.
               </Item>
             </ContentList>
@@ -424,11 +425,6 @@ const IndexPage = () => {
               <Highlight>
                 <Link href="mailto:me@upa-r-upa.com">me@upa-r-upa.com</Link>
               </Highlight>
-            </Information>
-
-            <Information>
-              <InfoLabel>Info</InfoLabel>
-              This page is currently under development. Thank you.
             </Information>
           </Content>
         </Section>
