@@ -23,4 +23,3 @@ Branch는 semantic branch naming을 사용하고 있습니다.
 - `React`
 - `Gatsby`
 - `styled-components`
-- `Jest` (예정)
