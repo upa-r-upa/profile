@@ -2,7 +2,6 @@ import { HeadFC } from 'gatsby';
 import * as React from 'react';
 import styled, { keyframes } from 'styled-components';
 
-import ResumeList, { Resume, ResumeProject } from 'assets/data/resume';
 import { FillButton } from 'components/Button/styled';
 import { getPeriodFormatDate } from 'utils/date';
 
@@ -37,13 +36,9 @@ const Highlight = styled.span`
   font-weight: 500;
 `;
 
-const Bold = styled.span`
-  font-weight: 500;
-`;
-
-const ContentTitle = styled(Bold)`
-  display: block;
-  margin-bottom: 1.5rem;
+const SubTitle = styled.div`
+  font-size: ${(props) => props.theme.fontSize.h2};
+  text-align: left;
   font-family: ${(props) => props.theme.fontFamily.special};
 `;
 
@@ -54,193 +49,6 @@ const CursorAnimation = keyframes`
 
   50%, 85% {
     opacity: 0;
-  }
-`;
-
-const ButtonsWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  margin-top: 1rem;
-`;
-
-const Button = styled(FillButton)`
-  svg {
-    display: inline-block;
-    margin-right: 1rem;
-    font-size: ${(props) => props.theme.fontSize.sub};
-  }
-
-  background-color: #fff;
-  font-family: ${(props) => props.theme.fontFamily.special};
-`;
-
-const GithubButton = styled(Button).attrs({ buttonColor: 'light' })`
-  background-color: #323437;
-  margin-right: 1rem;
-`;
-
-const Link = styled.a`
-  display: block;
-`;
-
-const SubTitle = styled.div`
-  font-size: ${(props) => props.theme.fontSize.h2};
-  text-align: left;
-  font-family: ${(props) => props.theme.fontFamily.special};
-`;
-
-const Section = styled.div`
-  color: ${(props) => props.theme.color.text.light};
-  width: 100%;
-  margin-bottom: 2rem;
-  padding-left: 2rem;
-
-  ${({ theme }) => theme.mediaQuery.mobile} {
-    margin-right: auto;
-    margin-left: auto;
-    padding-left: 0;
-  }
-`;
-
-const Title = styled.div`
-  color: ${(props) => props.theme.color.primary};
-  margin-left: 2rem;
-  font-size: ${(props) => props.theme.fontSize.h1};
-  font-family: ${(props) => props.theme.fontFamily.special};
-  border-bottom: 0.3rem dotted ${(props) => props.theme.color.primary};
-
-  &:before {
-    content: '>';
-    padding-right: 1rem;
-  }
-
-  ${({ theme }) => theme.mediaQuery.mobile} {
-    margin-left: 0;
-  }
-`;
-
-const Content = styled.div`
-  padding: 2rem;
-  font-size: ${(props) => props.theme.fontSize.content};
-  letter-spacing: 0.1rem;
-
-  ${({ theme }) => theme.mediaQuery.mobile} {
-    padding: 2rem 0;
-  }
-`;
-
-const ContentList = styled.ul``;
-
-const Item = styled.li`
-  margin-bottom: 2rem;
-
-  ${({ theme }) => theme.mediaQuery.tabletAndPC} {
-    line-height: 2.2;
-  }
-
-  ${({ theme }) => theme.mediaQuery.mobile} {
-    line-height: 1.7;
-  }
-`;
-
-const Team = styled.div`
-  margin-top: 5rem;
-
-  ${({ theme }) => theme.mediaQuery.mobile} {
-    margin-top: 1rem;
-  }
-`;
-
-const TeamTitle = styled(ContentTitle)`
-  font-size: ${(props) => props.theme.fontSize.h2};
-
-  ${Highlight} {
-    color: ${(props) => props.theme.color.secondary};
-  }
-
-  &:first-child {
-    margin-top: 0rem;
-  }
-`;
-
-const ProjectSpec = styled.p`
-  margin-bottom: 0.5rem;
-  font-family: ${(props) => props.theme.fontFamily.special};
-  font-size: ${(props) => props.theme.fontSize.sub};
-`;
-
-const ResumeItem = styled.li`
-  margin-bottom: 0.2rem;
-  font-size: ${(props) => props.theme.fontSize.sub};
-  letter-spacing: 0.15rem;
-
-  &:before {
-    content: '>_';
-    padding-right: 1.5rem;
-    font-size: ${(props) => props.theme.fontSize.h4};
-    font-family: ${(props) => props.theme.fontFamily.special};
-    letter-spacing: -0.8rem;
-  }
-`;
-
-const ResumeWrapper = styled.ul``;
-
-const Project = styled.div`
-  margin-bottom: 5rem;
-
-  &:nth-child(odd) {
-    ${ProjectSpec}, ${ResumeItem}::before {
-      color: ${(props) => props.theme.color.secondary};
-    }
-  }
-
-  &:nth-child(even) {
-    ${ProjectSpec}, ${ResumeItem}::before {
-      color: ${(props) => props.theme.color.primary};
-    }
-  }
-
-  &:last-child {
-    margin-bottom: 0rem;
-  }
-`;
-
-const ProjectTitle = styled.p`
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-`;
-
-const Darken = styled.span`
-  color: ${(props) => props.theme.color.text.dark};
-`;
-
-const ProjectDescription = styled.p`
-  margin-bottom: 1rem;
-  color: ${(props) => props.theme.color.text.dark};
-  letter-spacing: 0.2rem;
-  letter-spacing: 0.1rem;
-`;
-
-const Information = styled.div`
-  display: flex;
-  align-items: center;
-  font-size: ${(props) => props.theme.fontSize.content};
-  font-family: ${(props) => props.theme.fontFamily.special};
-
-  ${Link} {
-    border-bottom: 0.1rem solid transparent;
-
-    &:hover {
-      border-bottom: 0.1rem solid ${(props) => props.theme.color.primary};
-    }
-  }
-`;
-
-const InfoLabel = styled.p`
-  margin-right: 1rem;
-
-  &:after {
-    content: ':';
   }
 `;
 
@@ -318,6 +126,29 @@ const TextPart = styled.span<{ delaySecond: number }>`
   }
 `;
 
+const Title = styled.h3`
+  font-size: ${(props) => props.theme.fontSize.h2};
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: ${(props) => props.theme.color.primary};
+  border-bottom: 2px solid ${(props) => props.theme.color.primary};
+  padding-bottom: 0.5rem;
+`;
+
+const Card = styled.div`
+  padding: 2rem;
+
+  p {
+    margin-bottom: 1rem;
+    color: ${(props) => props.theme.color.text.dark};
+  }
+
+  p:first-child {
+    font-weight: bold;
+    color: ${(props) => props.theme.color.primary};
+  }
+`;
+
 const typingAnimationText = 'HELLO, World!';
 const partAnimation = 0.3;
 
@@ -332,102 +163,59 @@ const IndexPage = () => {
     ));
   };
 
-  const getFormattedLibraries = (libraries: Array<string>): string => {
-    return libraries.join(', ');
-  };
-
-  const renderProjects = (projects: Array<ResumeProject>): React.ReactNode => {
-    return projects.map(({ title, period, description, libraries, tasks }) => (
-      <Project key={title}>
-        <ProjectTitle>
-          {title} <Darken>{`[${getPeriodFormatDate(...period)}]`}</Darken>
-        </ProjectTitle>
-        <ProjectSpec>{getFormattedLibraries(libraries)}</ProjectSpec>
-        <ProjectDescription>{description}</ProjectDescription>
-
-        <ResumeWrapper>
-          {tasks.map((task) => (
-            <ResumeItem key={task}>{task}</ResumeItem>
-          ))}
-        </ResumeWrapper>
-      </Project>
-    ));
-  };
-
-  const renderResumeList = (resumeList: Array<Resume>): React.ReactNode => {
-    return resumeList.map((team) => (
-      <Team key={team.team}>
-        <TeamTitle>
-          <Highlight>@{team.team}</Highlight> ({`${getPeriodFormatDate(...team.period)}`})
-        </TeamTitle>
-
-        {renderProjects(team.projects)}
-      </Team>
-    ));
-  };
-
   return (
     <Wrapper>
       <MainSection>
         <MainTitle>{renderMainAnimation()}</MainTitle>
 
         <SubTitle>
-          I am developer <Highlight>Dabin Kim.</Highlight>
+          <Highlight>I am Rupa.</Highlight>
         </SubTitle>
       </MainSection>
-
       <ContentSection>
-        <Section>
-          <Title>ME?</Title>
-          <Content>
-            <ContentTitle>
-              I&#39; m Kim Da-bin, a front-end developer with<Highlight> four years</Highlight> of experience.
-            </ContentTitle>
+        <Card>
+          <Title>좋아하는 것은..</Title>
+          <p>우파루파, 슈타인즈 게이트, 셔터 아일랜드</p>
+          <p>게임은 공포 게임과 1인칭 시뮬레이터 게임을 좋아합니다.</p>
+        </Card>
 
-            <ContentList>
-              <Item>
-                주로 React와 Typescript를 사용하고, styled-components를 사랑합니다.
-                <br /> 새로운 것을 무작정 도입해보고, 공부해보는 과정에서 <Highlight>즐거움</Highlight>을 느낍니다.
-                그리고, 개발 영역에 <Highlight>제한</Highlight>을 두지 않습니다. 재미있어 보인다면 일단 해보고 봅니다!
-                <br />
-              </Item>
+        <Card>
+          <Title>개발에서는..</Title>
+          <p>오픈 소스가 좋습니다.</p>
+          <p>새로운 프로그래밍 경험을 좋아합니다. 서비스 만드는게 즐거워요.</p>
+          <p>개발 해보면서 느낀건 1인 개발보다 팀으로 개발하는게 훨씬 즐거운 것 같아요.</p>
+          <p>커뮤니케이션 하고, 코드리뷰 하고, 그런 과정들이 행복합니다.</p>
+        </Card>
 
-              <Item>
-                이세계 아이돌의 고세구와 아이네를 사랑하고, 귀여운 우파루파를 좋아합니다. 아이작과 슬라임 랜처 게임,
-                슈타인즈 게이트를 좋아합니다. <br />
-                최근엔 오픈소스에 흥미가 생겨서, 조금씩 컨트리뷰션을 진행하고 있습니다.
-              </Item>
-            </ContentList>
+        <Card>
+          <Title>지금은..</Title>
+          <p>푹 쉬고 있습니다.</p>
+          <p>게임 백엔드 개발을 하고 있습니다.</p>
+          <p>사용하고 싶은 앱을 1인 개발하고 있습니다.</p>
+        </Card>
 
-            <ButtonsWrapper>
-              <Link href={'https://github.com/upa-r-upa'}>
-                <GithubButton>Github</GithubButton>
-              </Link>
+        <Card>
+          <Title>팀 활동은..</Title>
+          <p>NBB에서 활동하고 있습니다. 재밌는 게임을 만들고 싶은데 어려워요.</p>
+          <p>팀 이름 뜻은 Not blond beard인데.. 이름 자동 생성기를 돌렸더니 저렇게 됐습니다.</p>
+          <p>금발 수염이 아니라는게 무슨 뜻이 있는지는 잘 모르겠습니다...</p>
+          <p>그렇지만 이제 익숙해져서 정감 가고 좋아요.</p>
+        </Card>
 
-              <Link href={'https://kimdabin.tistory.com'}>
-                <Button>Tistory blog</Button>
-              </Link>
-            </ButtonsWrapper>
-          </Content>
-        </Section>
+        <Card>
+          <Title>취미는..</Title>
+          <p>소설보기, 만화 보기, 애니메이션 보기, 영화 보기, 게임 입니다.</p>
+          <p>가끔 가다가 자기계발서 보는것도 좋아합니다.</p>
+          <p>요 근래는 미움 받을 용기를 읽고 있어요. 내용이 참 좋아요.</p>
+          <p>애니메이션으로는 최근은 명탐정 코난 정주행 중입니다. 매 편마다 사람이 죽는건 참 잔인한 일입니다..</p>
+        </Card>
 
-        <Section>
-          <Title>Resume!</Title>
-          <Content>{renderResumeList(ResumeList)}</Content>
-        </Section>
-
-        <Section>
-          <Title>More?</Title>
-
-          <Content>
-            <Information>
-              <InfoLabel>Email</InfoLabel>
-              <Highlight>
-                <Link href="mailto:me@upa-r-upa.com">me@upa-r-upa.com</Link>
-              </Highlight>
-            </Information>
-          </Content>
-        </Section>
+        <Card>
+          <Title>가치관은..</Title>
+          <p>All is well.</p>
+          <p>항상 즐겁게 살고 싶습니다.</p>
+          <p>나름 즐겁고 행복한 것 같아요.</p>
+        </Card>
       </ContentSection>
     </Wrapper>
   );
