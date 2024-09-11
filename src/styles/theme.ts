@@ -46,32 +46,8 @@ const mediaQuery = Object.freeze({
   tabletAndPC: getMediaQuery(breakPoint.mobile),
 });
 
-interface FontSize {
-  h1: string;
-  h2: string;
-  h3: string;
-  h4: string;
-
-  title: string;
-  content: string;
-  sub: string;
-}
-
-/* Defining the font size for Mobile.(rem) */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const mobileFontSize: FontSize = {
-  h1: '2rem',
-  h2: '1.6rem',
-  h3: '1.3rem',
-  h4: '1rem',
-
-  title: '1.7rem',
-  content: '1.4rem',
-  sub: '1.2rem',
-};
-
-/* Defining the font size for PC.(rem) */
-const PCFontSize: FontSize = {
+/* Defining the font size.(rem) */
+const fontSize = {
   h1: '3.8rem',
   h2: '2.8rem',
   h3: '2.3rem',
@@ -82,40 +58,18 @@ const PCFontSize: FontSize = {
   sub: '1.2rem',
 };
 
-/**
- * It returns a FontSize object based on the window's innerWidth
- * @returns an Font size object.
- */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const getFontSizeSet = (clientWidth: number): FontSize => {
-  const remWidth = clientWidth / 10;
-
-  if (remWidth > breakPoint.mobile) {
-    return PCFontSize;
-  } else {
-    return mobileFontSize;
-  }
-};
-
 export interface Theme {
   color: typeof color;
   fontFamily: typeof fontFamily;
   mediaQuery: typeof mediaQuery;
-  fontSize: FontSize;
+  fontSize: typeof fontSize;
 }
 
-/**
- * It returns an object with the theme
- * @param {number} clientWidth - number
- * @returns Returns the appropriate theme object according to the size of the user's screen
- */
-const getTheme = (clientWidth: number): Theme => {
-  return {
-    color,
-    fontFamily,
-    mediaQuery,
-    fontSize: getFontSizeSet(clientWidth),
-  };
+const theme = {
+  color,
+  fontFamily,
+  mediaQuery,
+  fontSize,
 };
 
-export default getTheme;
+export default theme;

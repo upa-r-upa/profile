@@ -4,7 +4,7 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 
 import { GlobalStyle } from 'styles/GlobalStyle';
-import getTheme from 'styles/theme';
+import theme from 'styles/theme';
 
 interface Props {
   children: React.ReactNode;
@@ -12,7 +12,7 @@ interface Props {
 
 const Layout = ({ children }: Props) => {
   return (
-    <ThemeProvider theme={getTheme(document.body.clientWidth)}>
+    <ThemeProvider theme={theme}>
       <GlobalStyle />
       {children}
     </ThemeProvider>

@@ -2,9 +2,6 @@ import { HeadFC } from 'gatsby';
 import * as React from 'react';
 import styled, { keyframes } from 'styled-components';
 
-import { FillButton } from 'components/Button/styled';
-import { getPeriodFormatDate } from 'utils/date';
-
 const Wrapper = styled.div`
   color: ${(props) => props.theme.color.text.light};
   width: 100%;
@@ -223,4 +220,4 @@ const IndexPage = () => {
 
 export default IndexPage;
 
-export const Head: HeadFC = () => <title>Develop with Uparupa</title>;
+export const Head: HeadFC = () => <title>Rupa</title>;
