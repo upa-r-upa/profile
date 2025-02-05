@@ -30,7 +30,6 @@ const ContentSection = styled.div`
 
 const Highlight = styled.span`
   color: ${(props) => props.theme.color.primary};
-  font-weight: 500;
 `;
 
 const SubTitle = styled.div`
@@ -51,7 +50,6 @@ const CursorAnimation = keyframes`
 
 const MainTitle = styled.div`
   font-family: ${(props) => props.theme.fontFamily.special};
-  font-weight: 500;
   margin: 2rem 0;
   line-height: 1;
   color: ${(props) => props.theme.color.text.light};
@@ -125,7 +123,7 @@ const TextPart = styled.span<{ delaySecond: number }>`
 
 const Title = styled.h3`
   font-size: ${(props) => props.theme.fontSize.h2};
-  font-weight: bold;
+  font-weight: 700;
   margin-bottom: 1rem;
   color: ${(props) => props.theme.color.primary};
   border-bottom: 2px solid ${(props) => props.theme.color.primary};
@@ -138,11 +136,6 @@ const Card = styled.div`
   p {
     margin-bottom: 1rem;
     color: ${(props) => props.theme.color.text.dark};
-  }
-
-  p:first-child {
-    font-weight: bold;
-    color: ${(props) => props.theme.color.primary};
   }
 `;
 
