@@ -5,7 +5,6 @@ interface ButtonProps {
 }
 
 const ButtonBase = styled.button<ButtonProps>`
-  font-weight: bold;
   padding: 1rem 1rem;
   border-radius: 3rem;
   transition: 0.2s;

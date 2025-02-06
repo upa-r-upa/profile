@@ -123,7 +123,7 @@ export const GlobalStyle = createGlobalStyle`
         font-size: ${(props) => props.theme.fontSize.content};
         font-family: ${(props) => props.theme.fontFamily.normal}, sans-serif;
         line-height: 1.5;
-        font-weight: 300;
+        font-weight: 400;
         width: 100%;
         height: 100vh;
         background-color: ${(props) => props.theme.color.background};

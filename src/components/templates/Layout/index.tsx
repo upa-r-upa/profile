@@ -1,5 +1,3 @@
-import 'styles/font.css';
-
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 

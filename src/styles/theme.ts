@@ -14,7 +14,7 @@ const color = {
 
 /* Defining the font family. */
 const fontFamily = {
-  normal: 'NotoSans',
+  normal: 'Noto Sans KR',
   special: 'Silkscreen',
 };
 
